@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Personal Blog</title>
+	<link rel="stylesheet" href="CSS.css">
+	<h1>Welcome to my personal blog</h1>
+	<link rel="icon" type="image/x-icon" href="icon.png">	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+	<ul>
+		<li><a class="principal" href="Html.html">Home</a></li>
+		<li >
+			<a href="javascript:void(0)" onclick="showAbout()">About</a>
+		</li>
+		<li class="dropdown">
+			<a href="javascript:void(0)"class="dropbtn">News</a>
+			<div class="dropdown-content">
+      <a href="#" onclick="ShowSportsNews()">Sports News</a>
+      <a href="#" onclick="ShowPoliticalNews()">Political News</a>
+      <a href="#" onclick="ShowArtNews()">Art News</a>
+    </div>
+		</li>
+		<li class="dropdown">
+			<a href="javascript:void(0)" class="dropbtn">My Links</a>
+			<div class="dropdown-content">
+      <a href="https://www.linkedin.com">My linkedIn</a>
+      <a href="https://www.youtube.com/">My Youtube Channel</a>
+      <a href="https://www.instagram.com/">My IG</a>
+    </div>
+    </li>
+	</ul>
+		
+	</div>
+	
+	<div class="bodyContent">
+		<h2>Intro</h2><p>
+			Hello guys! this is my website.<br>Its a blog where i post random things from news (sports , arts , politics) or just somthing i find interesting and i want to share it with everybody.<br>
+			So enjoy surfing on my page and don't forget to give me a feedback!
+		</p>
+		<h2>Random</h2><p style="size: 20px; font-style: normal;">
+			These are some fun facts borrowed from Hadil (Sorry i didn't have the time to search by myself ! All credit goes to her ): <br><br>
+
+				* Fun Fact : Did you know what’s inside a Kit Kat? Broken Kit Kats that are damaged during production—they get ground up and go between the wafers inside, along with cocoa and sugar. That's a way to not let anything go to waste! <br>
+
+				* Fun Fact : Did you know that there's an island in Japan that is only inhabited by bunnies. And, yes, you can visit there if you want.<br>
+
+				* Fun Fact did you know that only 5 % of the ocean has been explored. The intense pressure at the deepest depths of the ocean makes it virtually impossible to navigate .<br>
+		</p>
+	</div>
+	
+	<div class="newsStream" style="display:none;">
+		<h2 style="font-size: large;">News Feed: </h2>
+				<pre id="here";></pre>
+	</div>
+	<div class="AboutReveal"style="display: none;">
+		<h2 style="font-size: large;">About:</h2>
+		<p style="font-size: medium;size: 30px;">Hi there ! <br> My name is Akram Benaoun<br>And this is my solo project.
+	</div>
+
+
+	
+<script>
+$( document ).ready();
+
+var news1 = addNews("war on ukrain","politics","200 people killed today on air raid near Kiyev ...")
+var news2 = addNews("Cristiano Free!", "sports","Cristiano Ronaldo now is without a club after reaching an agrement with Manshester United bord to end his contract ..")
+var news3 = addNews("New release", "arts","New upcoming movie will be releasd by the end of this year, to be continued ..")
+
+var newsArray =[news1,news2,news3]
+
+function addNews(title,category,content) {
+	return {
+		title: title,
+		category: category,
+		content:content,
+		creatingDate: "2022"
+	}
+}
+
+function addNewsToArray(title,category,content) {
+	newsArray.push(addNews(title,category,content))
+	
+}
+
+function displayNews(object) {
+	console.log(object.category)
+
+	console.log(object.title)
+	console.log(object.content)
+}
+
+function getNewsByCategory(array, query) {
+	for(var i=0; i<array.length; i++){
+		if(array[i].category === query){
+			displayNews(array[i])
+		}
+	}
+}
+
+	function showAbout(){
+
+		if($(".AboutReveal").is(":visible")){
+		$(".AboutReveal").hide()
+		$(".bodyContent").show()
+		alert("About is going to be hidden.");
+	}
+		else{
+			$(".AboutReveal").show()
+				HideNewsContent();
+			alert("About is going to showen.");
+		}
+	}
+	
+function ShowSportsNews() {
+	HidePrincipalContent()
+	$(".newsStream").show();
+	document.getElementById("here").innerHTML = news2.category+":"+"\n"+news2.title+"\n"+news2.content
+
+}
+
+function ShowPoliticalNews() {
+	HidePrincipalContent()
+	$(".newsStream").show();
+	document.getElementById("here").innerHTML = news1.category+":"+"\n"+news1.title+"\n"+news1.content
+	
+}
+
+function ShowArtNews() {
+	HidePrincipalContent()
+	$(".newsStream").show();
+	document.getElementById("here").innerHTML = news3.category+":"+"\n"+news3.title+"\n"+news3.content
+}
+
+function HidePrincipalContent() {
+	$(".bodyContent").hide()
+	$(".AboutReveal").hide()
+}
+function HideNewsContent(){
+	$(".newsStream").hide()
+	$(".bodyContent").hide()
+}
+
+
+</script>
+</body>
+</html>
+
+
+
+
